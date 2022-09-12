@@ -1,0 +1,55 @@
+:root {
+    --dark: rgb(55, 55, 55);
+    --light: rgb(208, 208, 208);
+    --darkgreen: #234524;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: var(--light);
+    margin: 5px;
+    text-align: center;
+    font-size: 60px;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    border: solid;
+    background-color: var(--light);
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.btn {
+    font-size: 30px;
+    border: solid;
+    margin: 5px 15px;
+}
+
+#start-btn:hover {
+    background-color: var(--dark);
+    color: red;
+    transition: 0.5s;
+}
+
+#hs-btn:hover {
+    background-color: var(--dark);
+    color: yellow;
+    transition: 0.5s;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--darkgreen);
+}
