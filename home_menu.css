@@ -33,16 +33,22 @@ h1 {
     margin: 5px 15px;
 }
 
+#start-btn {
+    transition: 1s;
+}
+
 #start-btn:hover {
     background-color: var(--dark);
     color: red;
-    transition: 0.5s;
+}
+
+#hs-btn {
+    transition: 1s;
 }
 
 #hs-btn:hover {
     background-color: var(--dark);
     color: yellow;
-    transition: 0.5s;
 }
 
 .container {

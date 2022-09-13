@@ -1,0 +1,86 @@
+:root {
+    --dark: rgb(55, 55, 55);
+    --light: rgb(208, 208, 208);
+    --darkgreen: #234524;
+}
+
+* {
+    background-color: var(--darkgreen);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.q-box {
+    /* added this margin to prevent content spilling out the top of the screen at small viewport sizes, pretty sure there's a better way to avoid that happening. */
+    margin-top: 78px;
+    margin: 0 20px;
+    padding: 5px;
+}
+
+.q-info {
+    margin: 5px;
+    padding: 5px 10px;
+}
+
+#q-number {
+    background-color: var(--darkgreen);
+    color: var(--light);
+    font-size: 36px;
+    max-height: 70px;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 40px;
+}
+
+#q-title {
+    color: var(--light);
+    font-size: 24px;
+    width: 100%;
+    padding-right: 5px;
+}
+
+#timer {
+    width: 140px;
+    height: 100px;
+    font-size: 14px;
+    text-align: center;
+    background-color: var(--dark);
+    color: var(--light);
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: rgb(0, 132, 255);
+}
+
+#count {
+    font-size: 28px;
+    background-color: inherit;
+}
+
+.choices {
+    margin: 10px;
+}
+
+.answer {
+    font-size: 18px;
+    background-color: var(--light);
+    margin: 10px 25px;
+    padding: 5px;
+    border-style: solid;
+    transition: 0.5s;
+    border-radius: 15px 0 0 0;
+}
+
+.answer:hover {
+    cursor: pointer;
+    background-color: rgb(142, 202, 205);
+}
