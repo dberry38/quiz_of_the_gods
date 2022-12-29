@@ -137,7 +137,7 @@ const questionOptions = [
         choices: [
             {text: "Angle Brackets", correct: true},
             {text: "Corner Brackets", correct: false},
-            {text: "carrots", correct: false},
+            {text: "cquestionOptionsots", correct: false},
             {text: "Square Brackets", correct: false},
         ]
     },
@@ -181,30 +181,34 @@ const questionOptions = [
             {text: "False", correct: false},
         ]
     },
-]
+];
+console.log(questionOptions);
+console.log(questionOptions.length);
 
-var questionNumber = document.getElementById('q-number')
-var questionTitle = document.getElementById('q-title')
-var countDown = document.getElementById('count')
+const questionNumber = document.getElementById('q-number')
+const questionTitle = document.getElementById('q-title')
+const countDown = document.getElementById('count')
+
+const answer1 = document.getElementById('ans-1')
+const answer2 = document.getElementById('ans-2')
+const answer3 = document.getElementById('ans-3')
+const answer4 = document.getElementById('ans-4')
 
 
+const qPicker = (questionOptions) => {
+    let source = questionOptions;
+    let picked = [];
 
-function generateQuestionCard() {
-    for (i=0; i<10; i++) {
-        qOptionsShuffle();
-        questionNumber.innerText = i + 1;
-        questionTitle.innertext = questionOptions.question;
-        
-    }
+    for (var i=0; i<10; i++) {
+        let rando = Math.floor(Math.random() * source.length);
+        picked.push(source[rando]);
+        source.splice(rando, 1);
+    };
+    console.log(picked);
 }
 
-function qOptionsShuffle(questionOptions) {
-    let currentIndex = questionOptions.length, randomIndex;
-
-    while (currentIndex !=0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        [questionOptions[currentIndex], questionOptions[randomIndex]] = [questionOptions[randomIndex], questionOptions[currentIndex]];
-    }
-    return questionOptions;
+const generateQuestionCard = (q) => {
+    qPicker();
 }
+
+qPicker();
