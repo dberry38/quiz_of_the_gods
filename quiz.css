@@ -71,6 +71,8 @@
 }
 
 .answer {
+    display: flex;
+    min-width: 50rem;
     font-size: 18px;
     background-color: var(--light);
     margin: 10px 25px;

@@ -119,10 +119,12 @@ const questionOptions = [
             {text: "<file-type: video>", correct: false},
         ]
     },
-    {question: "Javascript and Java are versions of the same language.", 
+    {question: "Which is NOT correct syntax to assign a variable called 'example' in Javascript?", 
         choices: [
-            {text: "False", correct: true},
-            {text: "True", correct: false},
+            {text: 'set example', correct: true},
+            {text: 'var example', correct: false},
+            {text: 'let example', correct: false},
+            {text: 'const example', correct: false},
         ]
     },
     {question: "How do you write a comment with more than one line in JavaScript?", 
@@ -133,11 +135,11 @@ const questionOptions = [
             {text: "//Only single line comments allowed.", correct: false},
         ]
     },
-    {question: "What are <> called?", 
+    {question: "What are '<>' called?", 
         choices: [
             {text: "Angle Brackets", correct: true},
             {text: "Corner Brackets", correct: false},
-            {text: "cquestionOptionsots", correct: false},
+            {text: "Angel Brackets", correct: false},
             {text: "Square Brackets", correct: false},
         ]
     },
@@ -157,38 +159,47 @@ const questionOptions = [
             {text: '<a link="url" target="new">', correct: false},
         ]
     },
-    {question: 'In HTML, <meta charset="UTF-8" tells the page to display in English.', 
+    {question: 'In HTML, which line tells the page to display in English?', 
         choices: [
-            {text: "False", correct: true},
-            {text: "True", correct: false},
+            {text: '<html lang="en">', correct: true},
+            {text: '<meta name="viewport" content="English, initial-scale=1.0">', correct: false},
+            {text: '<meta http-equiv="north_america" content="english">', correct: false},
+            {text: '<meta charset="UTF-8">', correct: false},
         ]
     },
-    {question: 'The HTML attribute <style> creates an inline style.', 
+    {question: 'Which HTML attribute creates an inline style?', 
         choices: [
-            {text: "True", correct: true},
-            {text: "False", correct: false},
+            {text: '<style>', correct: true},
+            {text: '<inlineCSS>', correct: false},
+            {text: '<css>', correct: false},
+            {text: '<stylesheet>', correct: false},
         ]
     },
-    {question: 'Negative values are accepted for the padding property.', 
+    {question: 'Which is NOT a CSS property for adjusting the space around a content box?', 
         choices: [
-            {text: "False", correct: true},
-            {text: "True", correct: false},
+            {text: 'justify-content', correct: true},
+            {text: 'margin', correct: false},
+            {text: 'border', correct: false},
+            {text: 'padding', correct: false},
         ]
     },
-    {question: 'The default value of the position property is "static".', 
+    {question: 'What is the default value of the CSS position property?', 
         choices: [
-            {text: "True", correct: true},
-            {text: "False", correct: false},
+            {text: "Static", correct: true},
+            {text: "Relative", correct: false},
+            {text: "Default", correct: false},
+            {text: "Horizontal", correct: false},
         ]
     },
 ];
 console.log(questionOptions);
-console.log(questionOptions.length);
 
 const questionNumber = document.getElementById('q-number')
 const questionTitle = document.getElementById('q-title')
-const countDown = document.getElementById('count')
+const countDown = document.getElementById('count-down')
+const timerMsg = document.getElementById('count-msg')
 
+const choiceTabs = document.getElementById('choise-tabs')
 const answer1 = document.getElementById('ans-1')
 const answer2 = document.getElementById('ans-2')
 const answer3 = document.getElementById('ans-3')
@@ -196,19 +207,78 @@ const answer4 = document.getElementById('ans-4')
 
 
 const qPicker = (questionOptions) => {
-    let source = questionOptions;
     let picked = [];
 
     for (var i=0; i<10; i++) {
-        let rando = Math.floor(Math.random() * source.length);
-        picked.push(source[rando]);
-        source.splice(rando, 1);
+        let rando = Math.floor(Math.random() * questionOptions.length);
+        picked.push(questionOptions[rando]);
+        questionOptions.splice(rando, 1);
     };
     console.log(picked);
+    generateCard(picked);
+    timerCountDown();
 }
 
-const generateQuestionCard = (q) => {
-    qPicker();
+const timerCountDown = () => {
+    let timeLeft = 61;
+    let timeInterval = setInterval(function () {
+        if (timeLeft === 61) {
+            countDown.innerHTML = ` `;
+            timerMsg.innerHTML = `START`;
+            timeLeft--;
+        } else if (timeLeft > 1) {
+            countDown.innerHTML = `${timeLeft}`;
+            timerMsg.innerHTML = `seconds left`;
+            timeLeft--;
+        } else if (timeLeft > 0) {
+            countDown.innerHTML = `${timeLeft}`;
+            timerMsg.innerHTML = `second left`;
+            timeLeft--;
+        } else if (timeLeft === 0) {
+            countDown.innerHTML = ` `;
+            timerMsg.innerHTML = `END`;
+        } else {
+            clearInterval(timeInterval);
+            endGame();
+        }
+    }, 1000);
 }
 
-qPicker();
+// const generateCard = (picked) => {
+
+//     let userAnswers = [];
+
+//     if (userAnswers.length == 10) {
+//         endGame();
+//     }
+//     for (var i=0; i<10; i++) {
+//         questionNumber.innerHTML = "#" + [i];
+//         questionTitle.innerText = picked[i].question;
+
+        
+//         let rndChoice = picked[i].choices.sort(func);
+//         function func(a, b) {
+//             return 0.5 - Math.random();
+//         };
+
+//         answer1.innerText = rndChoice[0].text;
+//         answer1.addEventListener("click", saveChoice)
+//         answer2.innerText = rndChoice[1].text;
+//         answer2.addEventListener("click", saveChoice(rndChoice[1]))
+//         answer3.innerText = rndChoice[2].text;
+//         answer3.addEventListener("click", saveChoice(rndChoice[2]))
+//         answer4.innerText = rndChoice[3].text;
+//         answer4.addEventListener("click", saveChoice(rndChoice[3]))
+//     }
+// }
+
+const saveChoice = (event) => {
+    console.log(event.target);
+};
+
+const endGame = () => {
+    
+}
+
+
+qPicker(questionOptions);
