@@ -312,27 +312,52 @@ const generateCard = (picked) => {
       choiceTabs[i].addEventListener("click", correctChoice);
     } else {
       choiceTabs[i].addEventListener("click", badChoice);
-    }
+    };
     choiceTabs[i].innerText = rndChoice[i].text;
-  }
+  };
+  console.log(winner);
 };
 
 
 var score = 0;
 // increase score count, increment index and run generateCard again
-const correctChoice = () => {
+const correctChoice = (event) => {
+  event.preventDefault();
   console.log("winner winner chicken dinner");
+  // whoops.innerText = "CORRECT";
   index++;
   score++;
+  console.log(score);
   generateCard(picked);
+
+  // let a = 1;
+  // let correctMessage = setInterval(function () {
+  //   if (a > 0) {
+  //     a--;
+  //   } else {
+  //     whoops.innerText = "";
+  //     clearInterval(correctMessage);
+  //   };
+  // }, 1000);
 };
 
 // increment index, decrease timeLeft
-const badChoice = () => {
+const badChoice = (event) => {
+  event.preventDefault();
   console.log("i cant believe youve done this");
   index++;
-  ;
   generateCard(picked);
+  // let b = 3;
+  // whoops.innerText = "WRONG ANSWER";
+  // let penaltyCount = setInterval(function () {
+  //   if (b > 0) {
+  //     whoops.innerText = "TIME PENALTY"
+  //     b--;
+  //   } else {
+  //     whoops.innerText = "";
+  //     clearInterval(penaltyCount);
+  //   }
+  // }, 1000);
 };
 
 const endGame = () => {};
