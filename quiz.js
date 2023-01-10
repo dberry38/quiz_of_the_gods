@@ -253,14 +253,15 @@ const whoops = document.getElementById("whoops");
 
 var picked = [];
 
+// This is essentially an initialize function that begins when the user lands on the quiz page.
 const qPicker = (questionOptions) => {
   // randomize the questions array without having repeats.
-  // let picked = [];
   for (var i = 0; i < 24; i++) {
     let rando = Math.floor(Math.random() * questionOptions.length);
     picked.push(questionOptions[rando]);
     questionOptions.splice(rando, 1);
   }
+  // Pass the randomized questions to be generated, while also starting the countdown.
   generateCard(picked);
   timerCountDown();
 };
@@ -286,12 +287,12 @@ const timerCountDown = () => {
     } else if (timeLeft === 0) {
       countDown.innerHTML = ` `;
       timerMsg.innerHTML = `END`;
-    } else {
       clearInterval(timeInterval);
       endGame();
     }
   }, 1000);
 };
+
 
 var index = 0;
 
@@ -300,66 +301,76 @@ const generateCard = (picked) => {
   questionNumber.innerHTML = "#" + [index + 1];
   questionTitle.innerText = picked[index].question;
 
-  let winner = "";
   let rndChoice = picked[index].choices.sort(func);
   function func(a, b) {
     return 0.5 - Math.random();
   }
 
+
+  // this loop assigns the answers to different listeners for correct or bad answers. The listeners need to be removed to prevent having both listeners stack and run together, causing issues.
   for (var i = 0; i < rndChoice.length; i++) {
+    choiceTabs[i].innerText = rndChoice[i].text;
+
     if (rndChoice[i].correct) {
-      winner = rndChoice[i];
+      choiceTabs[i].removeEventListener("click", badChoice);
       choiceTabs[i].addEventListener("click", correctChoice);
     } else {
+      choiceTabs[i].removeEventListener("click", correctChoice);
       choiceTabs[i].addEventListener("click", badChoice);
     };
-    choiceTabs[i].innerText = rndChoice[i].text;
   };
-  console.log(winner);
 };
 
 
 var score = 0;
-// increase score count, increment index and run generateCard again
+// increase score count, increment index, display correct message and run generateCard again
 const correctChoice = (event) => {
-  event.preventDefault();
   console.log("winner winner chicken dinner");
-  // whoops.innerText = "CORRECT";
   index++;
   score++;
   console.log(score);
   generateCard(picked);
+  
+  whoops.style.color = "rgb(0, 132, 255)";
+  whoops.innerText = "CORRECT";
 
-  // let a = 1;
-  // let correctMessage = setInterval(function () {
-  //   if (a > 0) {
-  //     a--;
-  //   } else {
-  //     whoops.innerText = "";
-  //     clearInterval(correctMessage);
-  //   };
-  // }, 1000);
+  let a = 1;
+  let correctMessage = setInterval(function () {
+    if (a > 0) {
+      a--;
+    } else {
+      whoops.innerText = "";
+      clearInterval(correctMessage);
+    };
+  }, 1000);
 };
 
-// increment index, decrease timeLeft
+// hold for 3 seconds, display wrong answer message, increment index, run generateCard again
 const badChoice = (event) => {
-  event.preventDefault();
   console.log("i cant believe youve done this");
-  index++;
-  generateCard(picked);
-  // let b = 3;
-  // whoops.innerText = "WRONG ANSWER";
-  // let penaltyCount = setInterval(function () {
-  //   if (b > 0) {
-  //     whoops.innerText = "TIME PENALTY"
-  //     b--;
-  //   } else {
-  //     whoops.innerText = "";
-  //     clearInterval(penaltyCount);
-  //   }
-  // }, 1000);
+  console.log(score);
+  let b = 3;
+  whoops.style.color = "red";
+  whoops.innerText = "WRONG ANSWER";
+  let penaltyCount = setInterval(function () {
+    if (b > 0) {
+      whoops.innerText = "TIME PENALTY"
+      b--;
+    } else {
+      whoops.innerText = "";
+      clearInterval(penaltyCount);
+      index++;
+      generateCard(picked);
+    }
+  }, 1000);
 };
 
-const endGame = () => {};
+
+
+const endGame = () => {
+  console.log("time's up, score: ", score);
+};
+
+
 
 qPicker(questionOptions);
