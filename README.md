@@ -16,7 +16,7 @@ Click the "Start!" button to begin the quiz. Answer the questions until the time
 ![Home Page with Start and Highscores buttons](/images/homepage.png)
 ![Quiz begins after clicking Start](/images/quiz.png)
 ![Save your initials](/images/gameover.png)
-![View your highscores](/images/highscores.png)
+![View your highscores](/images/highscorepage.png)
 
 ## Deployed URL
 coming soon
