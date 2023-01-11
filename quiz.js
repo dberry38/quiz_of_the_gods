@@ -248,8 +248,23 @@ const countDown = document.getElementById("count-down");
 const timerMsg = document.getElementById("count-msg");
 
 const choiceTabs = document.getElementsByClassName("answer");
-const whoops = document.getElementById("whoops");
+const ans1 = document.getElementById("ans-1");
+const ans2 = document.getElementById("ans-2");
+const ans3 = document.getElementById("ans-3");
+const ans4 = document.getElementById("ans-4");
 
+
+var highscores = [];
+
+const init = () => {
+  var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
+
+  if (storedHighscores !== null) {
+    highscores = storedHighscores;
+  };
+
+  qPicker(questionOptions);
+}
 
 var picked = [];
 
@@ -268,7 +283,7 @@ const qPicker = (questionOptions) => {
 
 
 
-var timeLeft = 1;
+var timeLeft = 61;
 
 const timerCountDown = () => {
   let timeInterval = setInterval(function () {
@@ -295,9 +310,18 @@ const timerCountDown = () => {
 
 
 var index = 0;
+var shouldHavePicked;
 
 // populates the question card based on index number and assigns event listeners based on whether the selected answer is correct.
 const generateCard = (picked) => {
+
+  thisOne.innerText = "";
+
+  ans1.classList.remove("hidden");
+  ans2.classList.remove("hidden");
+  ans3.classList.remove("hidden");
+  ans4.classList.remove("hidden");
+
   questionNumber.innerHTML = "#" + [index + 1];
   questionTitle.innerText = picked[index].question;
 
@@ -312,6 +336,7 @@ const generateCard = (picked) => {
     choiceTabs[i].innerText = rndChoice[i].text;
 
     if (rndChoice[i].correct) {
+      shouldHavePicked = rndChoice[i].text;
       choiceTabs[i].removeEventListener("click", badChoice);
       choiceTabs[i].addEventListener("click", correctChoice);
     } else {
@@ -322,13 +347,15 @@ const generateCard = (picked) => {
 };
 
 
+const whoops = document.getElementById("whoops");
+const thisOne = document.getElementById("shoulda-picked");
+
 var score = 0;
 // increase score count, increment index, display correct message and run generateCard again
 const correctChoice = (event) => {
-  console.log("winner winner chicken dinner");
   index++;
   score++;
-  console.log(score);
+
   generateCard(picked);
   
   whoops.style.color = "rgb(0, 132, 255)";
@@ -345,10 +372,14 @@ const correctChoice = (event) => {
   }, 1000);
 };
 
-// hold for 3 seconds, display wrong answer message, increment index, run generateCard again
+// hold for 3 seconds, display wrong answer message as well as correct answer, increment index, run generateCard again
 const badChoice = (event) => {
-  console.log("i cant believe youve done this");
-  console.log(score);
+  ans1.classList.add("hidden");
+  ans2.classList.add("hidden");
+  ans3.classList.add("hidden");
+  ans4.classList.add("hidden");
+  thisOne.innerText = `Correct answer was: ${shouldHavePicked}`;
+
   let b = 3;
   whoops.style.color = "red";
   whoops.innerText = "WRONG ANSWER";
@@ -364,7 +395,6 @@ const badChoice = (event) => {
     }
   }, 1000);
 };
-
 
 
 const modal = document.querySelector(".modal");
@@ -395,9 +425,10 @@ const EnableDisable = (initials) => {
   }
 };
 
+const storeUserScore = () => {
+  localStorage.setItem("highscores", JSON.stringify(highscores));
+}
 
-
-// 
 submitBtn.addEventListener("click", function(event) {
   event.preventDefault();
 
@@ -406,15 +437,15 @@ submitBtn.addEventListener("click", function(event) {
     highscore: score,
   };
 
-  localStorage.setItem("highscores", JSON.stringify(userScore));
+  highscores.push(userScore);
 
   submitBtn.classList.add("hidden");
   successMsg.classList.remove("hidden");
+
+  storeUserScore();
+  renderScores();
   }
 );
-
-
-
 
 // return to home page from modal
 homeReturn.onclick = function () {
@@ -426,4 +457,5 @@ viewScores.onclick = function () {
 }
 
 
-qPicker(questionOptions);
+
+init();

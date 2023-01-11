@@ -112,6 +112,10 @@ body {
   text-align: center;
 }
 
+#shoulda-picked {
+  color: var(--light);
+  padding-top: 40px;
+}
 
 .modal {
   display: flex;
