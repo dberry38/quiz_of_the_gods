@@ -283,7 +283,7 @@ const qPicker = (questionOptions) => {
 
 
 
-var timeLeft = 61;
+var timeLeft = 6;
 
 const timerCountDown = () => {
   let timeInterval = setInterval(function () {
@@ -450,7 +450,7 @@ homeReturn.onclick = function () {
 }
 // view highscores from modal
 viewScores.onclick = function () {
-  location.href = "./html/highscores";
+  location.href = "./highscores.html";
 }
 
 
