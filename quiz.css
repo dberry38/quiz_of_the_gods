@@ -1,146 +1,210 @@
 :root {
-    --dark: rgb(55, 55, 55);
-    --light: rgb(208, 208, 208);
-    --darkgreen: #234524;
+  --dark: rgb(55, 55, 55);
+  --light: rgb(208, 208, 208);
+  --darkgreen: #234524;
 }
 
 * {
-    background-color: var(--darkgreen);
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  background-color: var(--darkgreen);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #222;
-    position: relative;
-    min-height: 100vh;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #222;
+  position: relative;
+  min-height: 100vh;
+}
 
 .container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .q-box {
-    /* added this margin to prevent content spilling out the top of the screen at small viewport sizes, pretty sure there's a better way to avoid that happening. */
-    margin-top: 78px;
-    margin: 0 20px;
-    padding: 5px;
+  /* added this margin to prevent content spilling out the top of the screen at small viewport sizes, pretty sure there's a better way to avoid that happening. */
+  margin-top: 78px;
+  margin: 0 20px;
+  padding: 5px;
 }
 
 .q-info {
-    margin: 5px;
-    padding: 5px 10px;
+  margin: 5px;
+  padding: 5px 10px;
 }
 
 #q-number {
-    background-color: var(--darkgreen);
-    color: var(--light);
-    font-size: 36px;
-    max-height: 70px;
-    border-style: solid;
-    border-width: 4px;
-    border-radius: 40px;
+  background-color: var(--darkgreen);
+  color: var(--light);
+  font-size: 36px;
+  max-height: 70px;
+  border-style: solid;
+  border-width: 4px;
+  border-radius: 40px;
 }
 
 #q-title {
-    color: var(--light);
-    font-size: 24px;
-    min-width: 500px;
-    width: 100%;
-    padding-right: 5px;
+  color: var(--light);
+  font-size: 24px;
+  min-width: 500px;
+  width: 100%;
+  padding-right: 5px;
 }
 
 #timer {
-    width: 140px;
-    height: 100px;
-    font-size: 14px;
-    text-align: center;
-    background-color: var(--dark);
-    color: var(--light);
-    border-style: solid;
-    border-width: 3px;
-    border-radius: 10px;
-    border-color: rgb(0, 132, 255);
+  width: 140px;
+  height: 100px;
+  font-size: 14px;
+  text-align: center;
+  background-color: var(--dark);
+  color: var(--light);
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 10px;
+  border-color: rgb(0, 132, 255);
 }
 
-#count {
-    font-size: 28px;
-    background-color: inherit;
+#count-down {
+  font-size: 28px;
+  background-color: inherit;
+}
+
+#count-msg {
+  font-size: 14px;
+  background-color: inherit;
 }
 
 .choices {
-    margin: 10px;
+  margin: 10px;
 }
 
 .answer {
-    display: flex;
-    min-width: 50rem;
-    font-size: 18px;
-    background-color: var(--light);
-    margin: 10px 25px;
-    padding: 5px;
-    border-style: solid;
-    transition: 0.5s;
-    border-radius: 15px 0 0 0;
+  display: flex;
+  min-width: 50rem;
+  font-size: 18px;
+  background-color: var(--light);
+  margin: 10px 25px;
+  padding: 5px;
+  border-style: solid;
+  transition: 0.5s;
+  border-radius: 15px 0 0 0;
 }
 
 .answer:hover {
-    cursor: pointer;
-    background-color: rgb(142, 202, 205);
+  cursor: pointer;
+  background-color: rgb(142, 202, 205);
 }
 
 .message-board {
-    margin: auto;
-    width: 100%;
-    height: 36px;
-    font-size: 30px;
-    font-weight: 600;
+  margin: auto;
+  width: 100%;
+  height: 36px;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  padding: 1.3rem;
+  height: 250px;
+  color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 5px solid #ddd;
+  border-radius: 15px;
+  z-index: 2;
+}
+
+.modal .flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+
+.hidden {
+    display: none;
+  }
+
+.scoreboard {
     text-align: center;
 }
 
-/* .hidden {
-    display: none;
-  } */
+#game-over {
+    font-size: 22px;
+    font-weight: 700;
+    color:rgb(255, 136, 0)
+}
 
-  .modal {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.4rem;
-    width: 450px;
-    padding: 1.3rem;
-    min-height: 250px;
-    position: absolute;
-    top: 20%;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-  }
+#score-total {
+    font-size: 36px;
+    font-weight: 700;
+    color:rgb(0, 132, 255);
+}
 
-  .modal .flex {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.btn {
+  display: flexbox;
+  padding: 5px;
+  font-weight: 700;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 12px;
+}
 
-  .overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(3px);
-    z-index: 1;
-  }
+#submit-btn {
+    font-size: 20px;
+
+}
+
+#homepage-btn {
+    font-size: 16px;
+    margin-top: 10px;
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.submit {
+    display: flexbox;
+    text-align: center;
+}
+
+#initials {
+  display: flex;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 10px;
+  max-width: 64px;
+  font-size: 24px;
+}

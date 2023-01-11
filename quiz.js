@@ -366,11 +366,28 @@ const badChoice = (event) => {
 };
 
 
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const userScore = document.getElementById("score-total");
+const submitBtn = document.getElementById("submit-btn");
+const homeReturn = document.getElementById("homepage-btn");
 
 const endGame = () => {
   console.log("time's up, score: ", score);
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+  userScore.innerText = score;
 };
 
+const submitScore = () => {
+
+}
+
+submitBtn.addEventListener("click", submitScore);
+
+homeReturn.onclick = function () {
+  location.href = "/home-menu.html";
+}
 
 
 qPicker(questionOptions);
