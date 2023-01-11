@@ -432,10 +432,8 @@ const storeUserScore = () => {
 submitBtn.addEventListener("click", function(event) {
   event.preventDefault();
 
-  var userScore = {
-    initials: userInitials.value.trim(),
-    highscore: score,
-  };
+  var initials = userInitials.value.trim();
+  var userScore = {initials, score};
 
   highscores.push(userScore);
 
@@ -443,7 +441,6 @@ submitBtn.addEventListener("click", function(event) {
   successMsg.classList.remove("hidden");
 
   storeUserScore();
-  renderScores();
   }
 );
 
@@ -453,7 +450,7 @@ homeReturn.onclick = function () {
 }
 // view highscores from modal
 viewScores.onclick = function () {
-  location.href = "/high_score_page.html";
+  location.href = "/highscores.html";
 }
 
 

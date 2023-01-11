@@ -3,3 +3,48 @@
     --light: rgb(208, 208, 208);
     --darkgreen: #234524;
 }
+
+* {
+    margin: 0;
+}
+
+body {
+    background-color: var(--darkgreen);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: var(--light);
+}
+
+ul {
+    margin-top: 24px;
+    list-style-type: none;
+    font-size: 24px;
+}
+
+li {
+    font-size: 30px;
+    text-align: center;
+    color: rgb(0, 132, 255);
+}
+
+#label {
+    margin-bottom: 20px;
+    color:rgb(255, 136, 0);
+}
+
+.list {
+    /* display: flex; */
+}
+
+#score-list {
+    /* display: flex; */
+
+}
