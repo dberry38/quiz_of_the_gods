@@ -19,6 +19,22 @@ body {
     align-items: center;
 }
 
+#return-btn {
+    font-size: 12px;
+    border: solid;
+    margin: 5px 15px;
+    position: relative;
+    right: 250px;
+    transition: 1s;
+    background-color: var(--darkgreen);
+    color: var(--light);
+}
+
+#return-btn:hover {
+    background-color: var(--dark);
+    color: rgb(225, 0, 255);
+}
+
 h1 {
     color: var(--light);
 }
@@ -38,13 +54,4 @@ li {
 #label {
     margin-bottom: 20px;
     color:rgb(255, 136, 0);
-}
-
-.list {
-    /* display: flex; */
-}
-
-#score-list {
-    /* display: flex; */
-
 }
