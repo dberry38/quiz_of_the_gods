@@ -25,12 +25,14 @@
           </div>
           <div class="submit">
             <p id="submit-message">Enter your initials and save your score!</p>
-            <input type="text" id="initials" placeholder="AAA" />
+            <input maxlength="3" type="text" id="initials" placeholder="AAA" onkeyup="EnableDisable(this)" />
                 <div>
-                    <button class="btn" id="submit-btn">Submit</button>
+                    <input type="button" value="Submit" disabled="disabled" class="btn" id="submit-btn"></button>
+                    <p id="success-msg" class="hidden">Score Submitted!</p>
                 </div>
                 <div>
-                    <button class="btn" id="homepage-btn">Return to Homepage</button>
+                    <button class="btn modal-nav" id="homepage-btn">Return to Homepage</button>
+                    <button class="btn modal-nav" id="highscore-btn">View Highscores</button>
                 </div>
           </div>
         </div>

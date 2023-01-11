@@ -188,7 +188,7 @@ body {
 
 }
 
-#homepage-btn {
+.modal-nav {
     font-size: 16px;
     margin-top: 10px;
     background-color: var(--light);
@@ -207,4 +207,6 @@ body {
   margin-bottom: 10px;
   max-width: 64px;
   font-size: 24px;
+  color:rgb(0, 132, 255);
+  background-color: rgb(232, 182, 137);
 }

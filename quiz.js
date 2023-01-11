@@ -268,7 +268,7 @@ const qPicker = (questionOptions) => {
 
 
 
-var timeLeft = 61;
+var timeLeft = 1;
 
 const timerCountDown = () => {
   let timeInterval = setInterval(function () {
@@ -366,27 +366,63 @@ const badChoice = (event) => {
 };
 
 
+
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
-const userScore = document.getElementById("score-total");
+
+const scoreTotal = document.getElementById("score-total");
+const userInitials = document.getElementById("initials");
+
 const submitBtn = document.getElementById("submit-btn");
 const homeReturn = document.getElementById("homepage-btn");
+const viewScores = document.getElementById("highscore-btn");
 
+const successMsg = document.getElementById("success-msg");
+
+// display the game-over modal
 const endGame = () => {
-  console.log("time's up, score: ", score);
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
-  userScore.innerText = score;
+  scoreTotal.innerText = score;
 };
 
-const submitScore = () => {
+// Function to prevent user submitting score without initials
+const EnableDisable = (initials) => {
+  if (initials.value.trim() != "") {
+    submitBtn.disabled = false;
+  } else {
+    submitBtn.disabled = true;
+  }
+};
 
-}
 
-submitBtn.addEventListener("click", submitScore);
 
+// 
+submitBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var userScore = {
+    initials: userInitials.value.trim(),
+    highscore: score,
+  };
+
+  localStorage.setItem("highscores", JSON.stringify(userScore));
+
+  submitBtn.classList.add("hidden");
+  successMsg.classList.remove("hidden");
+  }
+);
+
+
+
+
+// return to home page from modal
 homeReturn.onclick = function () {
   location.href = "/home-menu.html";
+}
+// view highscores from modal
+viewScores.onclick = function () {
+  location.href = "/high_score_page.html";
 }
 
 
