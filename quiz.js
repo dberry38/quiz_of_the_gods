@@ -446,7 +446,7 @@ submitBtn.addEventListener("click", function(event) {
 
 // return to home page from modal
 homeReturn.onclick = function () {
-  location.href = "/home-menu.html";
+  location.href = "/index.html";
 }
 // view highscores from modal
 viewScores.onclick = function () {
