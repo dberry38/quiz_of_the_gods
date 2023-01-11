@@ -283,7 +283,7 @@ const qPicker = (questionOptions) => {
 
 
 
-var timeLeft = 6;
+var timeLeft = 61;
 
 const timerCountDown = () => {
   let timeInterval = setInterval(function () {
